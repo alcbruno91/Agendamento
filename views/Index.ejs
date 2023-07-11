@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema</title>
+    <script src="/fullcalendar-6.1.8/dist/index.global.js"></script>
+</head>
+<body>
+    <div id="calendar">
+
+    </div>
+</body>
+<script>
+    var urlParams = new URLSearchParams(window.location.search);
+    var success = urlParams.get('s');
+    if(success==1){
+        alert("Consulta criada com sucesso!")
+    }
+    var urlParams = new URLSearchParams(window.location.search);
+    var update = urlParams.get('u');
+    if(update==1){
+        alert("Consulta atualizada com sucesso!")
+    }
+    var urlParams = new URLSearchParams(window.location.search);
+    var erro = urlParams.get('e');
+    if(erro==1){
+        alert("Erro ao atualizar consulta!")
+    }
+    var el = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(el,{
+        initialView: 'dayGridMonth',
+        locale: 'pt-br',
+        events: 'consultas',
+        eventClick: function(info){
+            window.location.href = "/event/"+info.event.id
+        }
+    });
+    calendar.render();
+</script>
+</html>
